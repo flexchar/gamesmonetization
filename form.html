@@ -1,0 +1,63 @@
+<md-dialog aria-label="Contact Form">
+	<form>
+		<md-toolbar class="md-accent">
+			<div class="md-toolbar-tools">
+				<h2>Contact Form</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="app.cancel()">
+					<md-icon>close</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content style="min-width: 40vw;">
+			<div class="md-dialog-content" layout="column">
+
+				<div layout="row">
+					<md-input-container flex="50">
+						<label>Your Name:</label>
+						<input type="text" ng-model="form.name" required="">
+					</md-input-container>
+
+					<md-input-container flex="50">
+						<label>Your Email:</label>
+						<input type="email" ng-model="form.email" required="">
+					</md-input-container>					
+				</div>
+
+				<md-input-container flex>
+					<label>Type</label>
+					<md-select ng-model="form.type" required="">
+					  <md-option value="t1">Feedback & Contact</md-option>
+					  <md-option value="t2">Request</md-option>
+					</md-select>
+				</md-input-container>
+
+				<!--<div layout="row" ng-if="form.type == 't2'">
+					<md-input-container flex="50">
+						<label>Game's Publisher:</label>
+						<input type="text" ng-model="form.publisher" ng-required="{{form.type == 't2'}}">
+					</md-input-container>
+
+					<md-input-container flex="50">
+						<label>Game's Title:</label>
+						<input type="text" ng-model="form.title" ng-required="{{form.type == 't2'}}">
+					</md-input-container>					
+				</div>-->
+
+				<md-input-container flex>
+					<label>Your message:</label>
+					<textarea rows="2" ng-model="form.body" required="" aplaceholder="Feel free to share your thoughts, for example, what would you change?"></textarea>
+				</md-input-container>
+
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout-align="start">
+			<input type="text" ng-model="form.sec" name="secondary_name" ng-show="false">
+			<md-button type="submit" class="md-raised md-accent" md-no-ink="true" md-ripple-size="partial" ng-click="app.answer(form)">
+				Submit
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

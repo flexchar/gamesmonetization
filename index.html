@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="lukas-app">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Wondering what games are eligible for monetization on YouTube, check out this large database containing more than 3000 of games and their monetization conditions backed with sources.">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>YouTube Games Monetization Database</title>
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+	<link rel="shortcut icon" href="/ico.png"/>
+	<link rel="favicon" href="/ico.png"/>
+
+	<style type="text/css">
+		.row-hover:hover {
+    		background-color: #eee!important
+		}
+	</style>
+</head>
+
+<body ng-cloak ng-controller="Ctrl as app" ng-init="myLimit = 10; myPage = 1;">
+
+	<div layout="column" layout-fill>
+
+		<md-toolbar class="md-whiteframe-z2" md-scroll-shrink="true">
+			<div class="md-toolbar-tools">
+				<h1 class="md-title" md-truncate>YouTube Games Monetization</h1>
+				<span flex></span>				
+				<md-button class="md-icon-button" ng-click="app.fetchData()">
+			  		<md-icon style="opacity: .01;">refresh</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>			
+
+		<md-content>
+
+			<md-card>
+				<md-toolbar class="md-table-toolbar md-default" ng-hide="search">
+					<div class="md-toolbar-tools">
+						<h2 class="md-title">Browse Database</h2>
+						<div flex></div>
+						<md-button class="md-icon-button" ng-click="search = true">
+							<md-icon>search</md-icon>
+						</md-button>
+					</div>
+				</md-toolbar>
+
+				<md-toolbar class="md-table-toolbar md-default" ng-show="search">
+				  <div class="md-toolbar-tools">
+					<input type="text" ng-model="myFilter" placeholder="Search" 
+					style="width: 100%; margin: 0; /*padding: 0 10px 0 10px;*/ border: none; outline: none;">
+					<div flex></div>					
+					<md-button class="md-icon-button" ng-click="search = false; myFilter = undefined;">
+						<md-icon>close</md-icon>
+					</md-button>
+				  </div>
+				</md-toolbar>
+
+					<md-table-container>
+						<table md-table md-progress="app.loading">
+							<thead md-head md-order="myOrder">
+								<tr md-row>									
+									<th md-column md-order-by="publisher">Publisher</th>
+									<th md-column md-order-by="game">Game</th>
+									<th md-column style="padding: 0;" md-order-by="monetization">Monetization</th>
+									<th md-column hide-xs hide-sm>Conditions</th>
+									<th md-column hide-xs>Source</th>
+									<th md-column md-numeric md-order-by="timestamp" hide-xs>Timestamp</th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr md-row ng-repeat="e in app.database | filter: myFilter | orderBy: myOrder | limitTo: myLimit: (myPage - 1) * myLimit" 
+									style="background-color: {{e.monetization=='Yes'?'rgba(0, 255, 0, 0.05)':(e.monetization=='No'?'rgba(255, 0, 0, 0.05)':'rgba(0, 0, 255, 0.05)')}};" class="row-hover">
+									<td md-cell>{{e.publisher}}</td>
+									<td md-cell>{{e.game}}</td>
+									<td md-cell style="padding: 0; font-weight: bold; color: {{e.monetization=='Yes'?'green':''}}">{{e.monetization}}</td>
+									<td md-cell hide-xs hide-sm>{{e.info}}</td>
+									<td md-cell hide-xs>
+										<a ng-href="{{e.source != 'N/A' ? e.source : '#'}}" target="{{e.source != 'N/A'?'_blank':''}}">
+											<md-tooltip md-direction="bottom">{{e.source}}</md-tooltip>
+											<md-icon>{{e.source == 'N/A'?'remove':'link'}}</md-icon>
+										</a>
+									</td>
+									<td md-cell hide-xs>{{e.timestamp | date:mediumDate}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<md-table-pagination md-limit="myLimit" md-limit-options="[10, 50, 100, 500]" md-page="myPage" md-total="{{myFilter?(app.database|filter:myFilter).length:app.database.length}}" md-on-paginate="myPage" md-page-select></md-table-pagination>
+			</md-card>
+		</md-content>
+
+		<md-button class="md-fab md-fab-bottom-right" ng-click="app.showFeedback()">
+			<md-tooltip md-direction="left" md-autohide="true">
+				Contact Us
+			</md-tooltip>
+			<md-icon>email_outline</md-icon>
+		</md-button>
+
+		<span flex></span>
+
+
+		<footer layout-padding layout="row" layout-align="start center">
+			<div>© All Rights Reserved | Made with ♥ by Lukas!</div>
+		</footer>
+
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js"></script>
+	<script type="text/javascript">    
+		angular.module('lukas-app', ['ngMaterial','md.data.table'])
+
+		.config(function($mdThemingProvider) {
+			$mdThemingProvider.theme('default')
+				.primaryPalette('green')
+				.accentPalette('blue')
+				.warnPalette('deep-orange');
+		})
+
+		.controller('Ctrl', function($http, $timeout, $q, $mdDialog, $mdToast) {
+			'use strict';
+			var self = this;
+
+			var spreadsheetId = "16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI";
+
+			self.database = [];
+
+			self.fetchData = function() {
+
+				var cleanData = function(data){
+
+					self.database = [];
+
+					var parse = function(entry) {
+						var publisher = entry['gsx$publisher']['$t'];
+						var game = entry['gsx$game']['$t'];
+						var monetization = entry['gsx$monetization']['$t'];
+						var info = entry['gsx$qualificationsinfo']['$t'];
+						var source = entry['gsx$source']['$t'];
+						var timestamp = entry['gsx$timestamp']['$t'];
+						return {
+							publisher: publisher,
+							game: game,
+							monetization: monetization,
+							info: info,
+							source: source,
+							timestamp: timestamp
+						};
+					}
+
+					angular.forEach(data, function(value) {
+			    		self.database.push(parse(value));
+					});
+
+			    	//console.log("Done cleaning data!");
+			    	deferred.resolve();
+
+				};
+
+				var deferred = $q.defer();
+				self.loading = deferred.promise;
+
+				$http.get('https://spreadsheets.google.com/feeds/list/'+ spreadsheetId +'/1/public/values?alt=json').then(
+					function(res){
+
+						var dbCallback = res.data.feed['entry'];
+
+						//console.log("Done fetching data! (" + dbCallback.length + ")");
+
+						cleanData(dbCallback);
+
+					}, function(res){
+						console.log('Failed! '+ res.statusText);
+			    		deferred.resolve(); 
+					});
+			}
+			self.fetchData();
+
+			var sendMail = function(data){
+				$http.post('https://formspree.io/'+email, data).then(function(res) {
+					if (res.data.success == "email sent") {
+						$mdToast.show(
+							$mdToast.simple()
+							.textContent('Successfully Sent!')
+							.position("bottom left")
+							.hideDelay(4500)
+						);
+					}
+
+				}, function(res) {
+					console.log("Error: "+res.statusText +' | '+ res.status);
+				});
+			};
+
+			var email="lukas@sperohub.com";
+
+			self.showFeedback = function(ev) {
+					$mdDialog.show({
+					controller: feedbackCtrl,
+					controllerAs: 'app',
+					templateUrl: 'form.html',
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose: false,
+					fullscreen: true
+				})
+				.then(function(form) {
+					var mailData = {
+						'name' 	  : form.name,
+						'_replyto': form.email,
+						'_subject': form.type=='t2'?'Request':'Feedback & Contact' + ' | YouTube Resources Games DB',
+						'message' : form.body 
+					};
+					if (!form.sec) {
+						sendMail(mailData);
+					}
+
+				}, function() {
+					//console.log('Dialog Closed.');
+				});
+			};
+
+			function feedbackCtrl($mdDialog) {
+				var self = this;
+
+			    self.hide = function() {
+			      $mdDialog.hide();
+			    };
+
+			    self.cancel = function() {
+			      $mdDialog.cancel();
+			    };
+
+			    self.answer = function(answer) {
+			      $mdDialog.hide(answer);
+			    };
+		  	}
+		});
+	</script>
+</body>
+</html>
