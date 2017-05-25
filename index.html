@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css"/>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-	<link rel="shortcut icon" href="/ico.png"/>
-	<link rel="favicon" href="/ico.png"/>
+	<link rel="shortcut icon" href="ico.png"/>
+	<link rel="favicon" href="ico.png"/>
 
 	<style type="text/css">
 		.row-hover:hover {
@@ -90,7 +90,7 @@
 					</md-table-container>
 					<md-table-pagination md-limit="myLimit" md-limit-options="[10, 50, 100, 500]" md-page="myPage" md-total="{{myFilter?(app.database|filter:myFilter).length:app.database.length}}" md-on-paginate="myPage" md-page-select></md-table-pagination>
 			</md-card>
-			
+
 			<footer layout-padding layout="row" layout-align="start center">
 				<div style="opacity: .6">© All Rights Reserved | Made with ♥ by Lukas!</div>
 			</footer>
