@@ -39,7 +39,7 @@
 			<md-card>
 				<md-toolbar class="md-table-toolbar md-default" ng-hide="search">
 					<div class="md-toolbar-tools">
-						<h2 class="md-title">Browse Database</h2>
+						<h2 class="md-title" style="color: rgba(0,0,0,.54);">Browsing database</h2>
 						<div flex></div>
 						<md-button class="md-icon-button" ng-click="search = true">
 							<md-icon>search</md-icon>
@@ -49,8 +49,8 @@
 
 				<md-toolbar class="md-table-toolbar md-default" ng-show="search">
 				  <div class="md-toolbar-tools">
-					<input type="text" ng-model="myFilter" placeholder="Search" 
-					style="width: 100%; margin: 0; /*padding: 0 10px 0 10px;*/ border: none; outline: none;">
+					<input type="text" ng-model="myFilter" placeholder="Start typing..." 
+					style="width: 100%; margin: 0; color: rgba(0,0,0,.54); /*padding: 0 10px 0 10px;*/ border: none; outline: none;">
 					<div flex></div>					
 					<md-button class="md-icon-button" ng-click="search = false; myFilter = undefined;">
 						<md-icon>close</md-icon>
@@ -90,6 +90,11 @@
 					</md-table-container>
 					<md-table-pagination md-limit="myLimit" md-limit-options="[10, 50, 100, 500]" md-page="myPage" md-total="{{myFilter?(app.database|filter:myFilter).length:app.database.length}}" md-on-paginate="myPage" md-page-select></md-table-pagination>
 			</md-card>
+			
+			<footer layout-padding layout="row" layout-align="start center">
+				<div style="opacity: .6">© All Rights Reserved | Made with ♥ by Lukas!</div>
+			</footer>
+
 		</md-content>
 
 		<md-button class="md-fab md-fab-bottom-right" ng-click="app.showFeedback()">
@@ -98,14 +103,6 @@
 			</md-tooltip>
 			<md-icon>email_outline</md-icon>
 		</md-button>
-
-		<span flex></span>
-
-
-		<footer layout-padding layout="row" layout-align="start center">
-			<div>© All Rights Reserved | Made with ♥ by Lukas!</div>
-		</footer>
-
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>

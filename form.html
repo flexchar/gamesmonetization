@@ -1,5 +1,5 @@
 <md-dialog aria-label="Contact Form">
-	<form>
+	<form name="feedback">
 		<md-toolbar class="md-accent">
 			<div class="md-toolbar-tools">
 				<h2>Contact Form</h2>
@@ -55,7 +55,7 @@
 
 		<md-dialog-actions layout-align="start">
 			<input type="text" ng-model="form.sec" name="secondary_name" ng-show="false">
-			<md-button type="submit" class="md-raised md-accent" md-no-ink="true" md-ripple-size="partial" ng-click="app.answer(form)">
+			<md-button type="submit" class="md-raised md-accent" ng-disabled="feedback.$invalid" ng-click="app.answer(form)">
 				Submit
 			</md-button>
 		</md-dialog-actions>
