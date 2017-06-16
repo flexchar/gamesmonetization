@@ -2,7 +2,7 @@
 
 Database containing over 3000 records of games and their monetization policies for media platform YouTube.
 
-Address: (gamesmonetiztion.com)[https://gamesmonetization.com/]
+Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 
 
 
