@@ -1,5 +1,5 @@
 <md-dialog aria-label="Contact Form">
-	<form name="feedback">
+	<form name="feedback" disabled>
 		<md-toolbar class="md-accent">
 			<div class="md-toolbar-tools">
 				<h2>Contact Form</h2>
@@ -13,21 +13,25 @@
 		<md-dialog-content style="min-width: 40vw;">
 			<div class="md-dialog-content" layout="column">
 
+				<div class="md-warn" ng-if="app.offline">
+					<span class="md-subhead">Sorry, but it is not possible to send feedback while offline. Make sure you connected to internet.</span>
+				</div>
+
 				<div layout="row">
 					<md-input-container flex="50">
 						<label>Your Name:</label>
-						<input type="text" ng-model="form.name" required="">
+						<input type="text" ng-model="form.name" required="" ng-disabled="app.offline">
 					</md-input-container>
 
 					<md-input-container flex="50">
 						<label>Your Email:</label>
-						<input type="email" ng-model="form.email" required="">
+						<input type="email" ng-model="form.email" required="" ng-disabled="app.offline">
 					</md-input-container>					
 				</div>
 
 				<md-input-container flex>
 					<label>Type</label>
-					<md-select ng-model="form.type" required="">
+					<md-select ng-model="form.type" required="" ng-disabled="app.offline">
 					  <md-option value="t1">Feedback & Contact</md-option>
 					  <md-option value="t2">Request</md-option>
 					</md-select>
@@ -47,7 +51,7 @@
 
 				<md-input-container flex>
 					<label>Your message:</label>
-					<textarea rows="2" ng-model="form.body" required="" aplaceholder="Feel free to share your thoughts, for example, what would you change?"></textarea>
+					<textarea rows="2" ng-model="form.body" required=""  ng-disabled="app.offline" aplaceholder="Feel free to share your thoughts, for example, what would you change?"></textarea>
 				</md-input-container>
 
 			</div>
@@ -55,7 +59,7 @@
 
 		<md-dialog-actions layout-align="start">
 			<input type="text" ng-model="form.sec" name="secondary_name" ng-show="false">
-			<md-button type="submit" class="md-raised md-accent" ng-disabled="feedback.$invalid" ng-click="app.answer(form)">
+			<md-button type="submit" class="md-raised md-accent" ng-disabled="feedback.$invalid || app.offline" ng-click="app.answer(form)">
 				Submit
 			</md-button>
 		</md-dialog-actions>
