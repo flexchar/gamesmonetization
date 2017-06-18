@@ -1,5 +1,6 @@
-var date = "2017-06-18";
+var date = "2017-06-18v..1";
 var intro = "LuVa-Games-";
+importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
 var coreCacheName = intro + "Core (" + date + ")";
 var dbCacheName = intro + "Database (Dynamic)";
 var db = "https://spreadsheets.google.com/feeds/list/16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI/1/public/values?alt=json";
@@ -8,6 +9,7 @@ var coreRes = [
 	'/?utm_source=homescreen',
 	'index.html',
 	'manifest.json',
+	'/asset/app.js',
 	'/asset/form.html',
 	'/asset/ico.png',
 	'/asset/logo@1x.png',
@@ -29,7 +31,6 @@ var js = [
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js'
 ];
 coreRes = coreRes.concat(js, css);
-importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
 
 self.addEventListener('install', function(e) {
 	e.waitUntil(
