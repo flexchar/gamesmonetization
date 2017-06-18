@@ -1,4 +1,4 @@
-var date = "2017-06-16";
+var date = "2017-06-18";
 var intro = "LuVa-Games-";
 var coreCacheName = intro + "Core (" + date + ")";
 var dbCacheName = intro + "Database (Dynamic)";
@@ -19,9 +19,7 @@ var css = [
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css',
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css'
 ];
-var fonts = [
-	'https://fonts.gstatic.com/s/roboto/v16/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2'
-];
+var fonts = [];
 var js = [
 	'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
 	'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js',
@@ -31,6 +29,7 @@ var js = [
 	'https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js'
 ];
 coreRes = coreRes.concat(js, css);
+importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
 
 self.addEventListener('install', function(e) {
 	e.waitUntil(
@@ -46,7 +45,6 @@ self.addEventListener('install', function(e) {
 		})
 	);	
 });
-
 self.addEventListener('activate', function(e) {
 	clients.claim();
 	e.waitUntil(
@@ -62,6 +60,7 @@ self.addEventListener('activate', function(e) {
 	);
 });
 
+goog.offlineGoogleAnalytics.initialize();
 self.addEventListener('fetch', function(e) {
 	if (e.request.url == db) {
 		e.respondWith(
