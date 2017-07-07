@@ -1,6 +1,6 @@
 # YouTube Games Monetization Database
 
-Database containing over 3000 records of games and their monetization policies for media platform YouTube.
+Database containing over 3300 records of games and their monetization policies for media platform YouTube.
 
 Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 
@@ -8,6 +8,14 @@ Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 
 
 ## Log
+
+#### 2017-07-07
+
+- Updated database update button to `updated`.
+
+#### 2017-07-06
+
+- Updated footer (removed copyright text line).
 
 #### 2017-06-18
 
