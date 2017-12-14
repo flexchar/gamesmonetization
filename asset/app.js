@@ -122,7 +122,7 @@
 						var publisher = entry['gsx$publisher']['$t'];
 						var game = entry['gsx$game']['$t'];
 						var monetization = entry['gsx$monetization']['$t'];
-						var info = entry['gsx$qualificationsinfo']['$t'];
+						var info = entry['gsx$information']['$t'];
 						var source = entry['gsx$source']['$t'];
 						var timestamp = entry['gsx$timestamp']['$t'];
 						return {
