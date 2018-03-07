@@ -1,4 +1,5 @@
-var date = "2017-12-14v..2";
+var date = "2018-03-07v..2";
+// var date = "2017-12-14v..2";
 // var date = "2017-06-18v..1";
 var intro = "LuVa-Games-";
 importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
