@@ -109,7 +109,7 @@
 				}
 			}
 
-			var email="apps@youtuberis.lt";
+			var email="lukas@gamesmonetization.com";
 			var spreadsheetId = "16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI";
 
 			self.fetchData = function(update = null) {
