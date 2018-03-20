@@ -1,4 +1,4 @@
-var date = "2018-03-16v..2";
+var date = "2018-03-20.2";
 
 var intro = "LuVa-Games-";
 importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
