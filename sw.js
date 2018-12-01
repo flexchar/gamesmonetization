@@ -1,10 +1,11 @@
-var date = "2018-03-20.2";
+var date = '2018-12-01';
 
-var intro = "LuVa-Games-";
+var intro = 'flexchar::';
 importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
-var coreCacheName = intro + "Core (" + date + ")";
-var dbCacheName = intro + "Database (Dynamic)";
-var db = "https://spreadsheets.google.com/feeds/list/16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI/1/public/values?alt=json";
+var coreCacheName = intro + 'Core (' + date + ')';
+var dbCacheName = intro + 'Database (Dynamic)';
+var db =
+	'https://spreadsheets.google.com/feeds/list/16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI/1/public/values?alt=json';
 var coreRes = [
 	'/',
 	'/?utm_source=homescreen',
@@ -39,24 +40,33 @@ self.addEventListener('install', function(e) {
 			return c.addAll(coreRes);
 		}),
 		fetch(db).then(function(res) {
-			if (!res.ok) throw new Error("Failed to fetch DB!");
-			
+			if (!res.ok) throw new Error('Failed to fetch DB!');
+
 			caches.open(dbCacheName).then(function(c) {
 				return c.put('database', res);
 			});
 		})
-	);	
+	);
 });
 self.addEventListener('activate', function(e) {
 	clients.claim();
 	e.waitUntil(
 		caches.keys().then(function(ls) {
 			return Promise.all(
-				ls.filter(function(single) {
-					return single.startsWith(intro) && (single == coreCacheName ? false : (dbCacheName==single ? false : true));
-				}).map(function(single) {
-					return caches.delete(single);
-				})
+				ls
+					.filter(function(single) {
+						return (
+							single.startsWith(intro) &&
+							(single == coreCacheName
+								? false
+								: dbCacheName == single
+								? false
+								: true)
+						);
+					})
+					.map(function(single) {
+						return caches.delete(single);
+					})
 			);
 		})
 	);
@@ -82,8 +92,8 @@ self.addEventListener('fetch', function(e) {
 	}
 });
 
-self.addEventListener('message', function(m){
+self.addEventListener('message', function(m) {
 	if (m.data == 'skipWaiting') {
 		self.skipWaiting();
 	}
-})
+});

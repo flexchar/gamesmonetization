@@ -4,10 +4,11 @@ Database containing over 5700 records of games and their monetization policies f
 
 Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 
-
-
-
 ## Log
+
+#### 2018-12-01
+
+- Updated accept form submissions through Netlify.
 
 #### 2017-12-14
 
@@ -27,6 +28,7 @@ Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 - Integrated Google Analytics into app including offline tracking ([ref](https://developers.google.com/web/updates/2016/07/offline-google-analytics)).
 
 #### 2017-06-16
+
 - Upgraded to PWA (SW, offline support).
 - Released.
 - Domain: gamesmonetization.com
@@ -38,6 +40,5 @@ Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 #### 2017-05-22
 
 - Developed
-
 
 © All Rights Reserved. (SperoHub)
