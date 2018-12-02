@@ -196,20 +196,21 @@
 			};
 			self.fetchData();
 
-			var sendMail = function(data) {
-				const destination =
-					document.getElementById('feedback-form').action || null;
-				$http.post(destination, new FormData(data)).then(
+			var sendMail = function(form, destination) {
+				let data = new FormData();
+
+				// data should be transformed into FormData, but will not do
+				// new app will be designed
+
+				$http.post(destination, data).then(
 					function(res) {
-						if (res.data.success == 'email sent') {
-							$mdToast.show(
-								$mdToast
-									.simple()
-									.textContent('Successfully Sent!')
-									.position('bottom left')
-									.hideDelay(4500)
-							);
-						}
+						$mdToast.show(
+							$mdToast
+								.simple()
+								.textContent('Successfully Sent!')
+								.position('bottom left')
+								.hideDelay(4500)
+						);
 					},
 					function(res) {
 						console.log(
@@ -226,31 +227,15 @@
 			};
 
 			self.showFeedback = function(ev) {
-				$mdDialog
-					.show({
-						controller: feedbackCtrl,
-						controllerAs: 'app',
-						templateUrl: '/asset/form.html',
-						//parent: angular.element(document.body),
-						//targetEvent: ev,
-						clickOutsideToClose: false,
-						fullscreen: true
-					})
-					.then(
-						function(form) {
-							var mailData = {
-								name: form.name,
-								email: form.email,
-								message: form.body
-							};
-							if (!form.sec) {
-								sendMail(mailData);
-							}
-						},
-						function() {
-							//console.log('Dialog Closed.');
-						}
-					);
+				$mdDialog.show({
+					controller: feedbackCtrl,
+					controllerAs: 'app',
+					templateUrl: '/asset/form.html',
+					//parent: angular.element(document.body),
+					//targetEvent: ev,
+					clickOutsideToClose: false,
+					fullscreen: true
+				});
 			};
 
 			function feedbackCtrl($mdDialog) {
@@ -276,7 +261,9 @@
 				};
 
 				self.answer = function(answer) {
-					$mdDialog.hide(answer);
+					const destination = document.getElementById('feedback-form').action;
+					sendMail(answer, destination);
+					$mdDialog.hide();
 				};
 			}
 

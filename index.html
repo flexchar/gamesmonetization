@@ -125,7 +125,8 @@
 					<md-table-pagination md-limit="myLimit" md-limit-options="[10, 50, 100, 500]" md-page="myPage" md-total="{{myFilter?(app.database|filter:myFilter).length:app.database.length}}" md-on-paginate="myPage" md-page-select></md-table-pagination>
 			</md-card>
 
-			<footer layout-padding layout="row" layout-align="start center">
+			<footer layout-padding layout="column" layout-align="start center">
+				<div>A better app is coming, for entries contact at lukas@youtuberis.lt</div>
 				<div>© Made with ♥ by Lukas!</div>
 			</footer>
 		</md-content>
@@ -139,18 +140,18 @@
 			</md-fab-trigger>
 
 			<md-fab-actions>
-				<md-button aria-label="Send Feedback" class="md-fab md-raised md-mini" ng-click="app.showFeedback()">
+				<!-- <md-button aria-label="Send Feedback" class="md-fab md-raised md-mini" href="mailto:lukas@youtuberis.lt">
 					<md-tooltip md-direction="left" md-visible="app.tooltipToggle" md-autohide="false">Send Feedback</md-tooltip>
 					<md-icon style="color: #2979ff">email_outline</md-icon>
-				</md-button>
+				</md-button> -->
 				<md-button aria-label="Update Database" class="md-fab md-raised md-mini" ng-click="app.fetchData(true)">
 					<md-tooltip md-direction="left" md-visible="app.tooltipToggle" md-autohide="false">Update Database</md-tooltip>
 					<md-icon style="opacity: .54">update</md-icon>
 				</md-button>
-				<md-button class="md-fab md-raised md-mini" ng-click="app.dataUsage()">
+				<!-- <md-button class="md-fab md-raised md-mini" ng-click="app.dataUsage()">
 					<md-tooltip md-direction="left" md-visible="app.tooltipToggle" md-autohide="false">Check disk usage</md-tooltip>
 			  		<md-icon style="opacity: .54">data_usage</md-icon>
-				</md-button>	
+				</md-button>	 -->
 			</md-fab-actions>
 		</md-fab-speed-dial>
 
