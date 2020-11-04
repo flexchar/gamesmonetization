@@ -109,8 +109,8 @@
 				}
 			}
 
-			var email="lukas@sperohub.com";
-			var spreadsheetId = "16qXL4U92CwMa5QdAIS1tyTKDQNrINo0uvk6dvu10XBI";
+			var email="lukas@youtuberis.lt";
+			var spreadsheetId = "17PfvQsVjMTcZrenYKE_7uy20V1YIEkDoyVokaN0Ni_w";
 
 			self.fetchData = function(update = null) {
 
