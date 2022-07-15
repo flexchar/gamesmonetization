@@ -1,7 +1,6 @@
 var date = "2020-11-05";
 
 var intro = "LuVa-Games-";
-importScripts('/asset/sw-offline-google-analytics.prod.v0.0.25.js');
 var coreCacheName = intro + "Core (" + date + ")";
 var dbCacheName = intro + "Database (Dynamic)";
 var db = "https://spreadsheets.google.com/feeds/list/17PfvQsVjMTcZrenYKE_7uy20V1YIEkDoyVokaN0Ni_w/1/public/values?alt=json";
@@ -62,7 +61,6 @@ self.addEventListener('activate', function(e) {
 	);
 });
 
-goog.offlineGoogleAnalytics.initialize();
 self.addEventListener('fetch', function(e) {
 	if (e.request.url == db) {
 		e.respondWith(
