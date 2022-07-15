@@ -1,10 +1,10 @@
-# YouTube Games Monetization Database
+# [ARCHIVED] YouTube Games Monetization Database
+
+> Update on 15/7-22. This was a fun project back in my teenage, also back when it was more relevant to the monetization on youtube. However nowadays I've not only shifted away from videos games and content production on Youtube, but the scope of this project does not have significant practical value. So let it live in the GitHub arhive.
 
 Database containing over 5700 records of games and their monetization policies for media platform YouTube.
 
 Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
-
-
 
 
 ## Log
@@ -38,6 +38,3 @@ Address: [gamesmonetiztion.com](https://gamesmonetization.com/)
 #### 2017-05-22
 
 - Developed
-
-
-© All Rights Reserved. (SperoHub)
